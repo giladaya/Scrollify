@@ -38,17 +38,17 @@
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['window', 'document'], factory);
+        define([], factory);
     } else if (typeof module === 'object' && module.exports) {
         // Node. Does not work with strict CommonJS, but
         // only CommonJS-like environments that support module.exports,
         // like Node.
-        module.exports = factory(window, document);
+        module.exports = factory();
     } else {
         // Browser globals (root is window)
-        root.Scrollify = factory(window, document);
+        root.Scrollify = factory();
     }
-}(this, function (window, document) {
+}(this, function () {
   "use strict";
   var heights = [],
     names = [],
@@ -634,7 +634,7 @@
             overflow[i] = false;
           } else {
             // getComputedStyle for modern browsers, currentStyle for IE
-            var style = window.getComputedStyle ? getComputedStyle(el, null) : el.currentStyle;
+            var style = getComputedStyle(el, null);
             el.style.height = 'auto';
             if(el.clientHeight < window.innerHeight || style.overflow ==="hidden") {
               el.style.height = window.innerHeight+'px';
